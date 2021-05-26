@@ -21,10 +21,15 @@ namespace gazebo
 			this->pid = common::PID(90.0, 00.00, 00.03);
 
 			auto joint_name = "arm1_arm2_joint";
+			auto joint_name2="arm2_arm3_joint";
 			
+			auto joint_name3 = "arm3_arm4_joint";
+			auto joint_name0="chasis_arm1_joint";
 
 			std::string name = this->model->GetJoint("arm1_arm2_joint")->GetScopedName();
-			
+			std::string name1 = this->model->GetJoint("arm2_arm3_joint")->GetScopedName();
+			std::string name2 = this->model->GetJoint("arm3_arm4_joint")->GetScopedName();
+			std::string name0 = this->model->GetJoint("chasis_arm1_joint")->GetScopedName();
 
 			this->jointController->SetPositionPID(name, pid);
 			this->jointController->SetPositionPID(name1,pid);
@@ -45,7 +50,10 @@ namespace gazebo
 			float rad = M_PI * angleDegree / 180;
 
 			std::string name = this->model->GetJoint("arm1_arm2_joint")->GetScopedName();
-			
+			std::string name1 = this->model->GetJoint("arm2_arm3_joint")->GetScopedName();
+
+			std::string name2 = this->model->GetJoint("arm3_arm4_joint")->GetScopedName();
+			std::string name0 = this->model->GetJoint("chasis_arm1_joint")->GetScopedName();
 			
 			// this->jointController->SetPositionPID(name, pid);
 			// this->jointController->SetPositionTarget(name, rad);
@@ -58,10 +66,15 @@ namespace gazebo
 			// 2 returns rotation accross Z axis
 			// If the Joint has only Z axis for rotation, 0 returns that value and 1 and 2 return nan
 			double a1 = physics::JointState(this->model->GetJoint("arm1_arm2_joint")).Position(0);
+			double a2 = physics::JointState(this->model->GetJoint("arm2_arm3_joint")).Position(0);
+			double a3 = physics::JointState(this->model->GetJoint("arm3_arm4_joint")).Position(0);
+			double a0 = physics::JointState(this->model->GetJoint("chasis_arm1_joint")).Position(0);
 			// double a2 = this->model->GetJoint("chasis_arm1_joint").Position(0);
 			// double a3 = physics::JointState(this->model->GetJoint("chasis_arm1_joint")).Position(2);
 			std::cout << "Current arm1_arm2_joint values: " << a1 * 180.0 / M_PI << std::endl;
-			
+			std::cout << "Current arm2_arm3_joint values: " << a2 * 180.0 / M_PI << std::endl;
+			std::cout << "Current arm3_arm4_joint values: " << a3 * 180.0 / M_PI << std::endl;
+			std::cout << "Current chasis_arm1_joint values: " << a0 * 180.0 / M_PI << std::endl;
 		}
 
 		// a pointer that points to a model object
