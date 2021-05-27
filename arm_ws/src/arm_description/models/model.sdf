@@ -122,7 +122,7 @@
             <child>arm2</child>
             <parent>arm1</parent>
             <axis>
-                <xyz>0 0 1</xyz>
+                <xyz>1 0 0</xyz>
             </axis>
         </joint>
         <joint type="revolute" name="arm2_arm3_joint">
