@@ -25,9 +25,11 @@ include_directories(${Boost_INCLUDE_DIR}
               ${roscpp_INCLUDE_DIRS}
               ${std_msgs_INCLUDE_DIRS})
 
-add_library(${PROJECT_NAME} SHARED src/controller.cpp)
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} ${roscpp_LIBRARIES})
 
+add_library(${PROJECT_NAME} SHARED src/controller.cpp)
+add_library(gripperController SHARED src/gripperController.cpp)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} ${roscpp_LIBRARIES})
+target_link_libraries(gripperController ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} ${roscpp_LIBRARIES})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -68,14 +70,17 @@ add_message_files(
   JointValues.msg
   RotationTranslationInput.msg
   RotationTranslationOutput.msg
+  GripCommand.msg
+  
 )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
+add_service_files(
+   FILES
+   fk.srv
+   ik.srv
 #   Service2.srv
-# )
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -221,8 +226,11 @@ CATKIN_DEPENDS message_runtime
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
+
+
+
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-catkin_install_python(PROGRAMS scripts/talker.py scripts/main.py scripts/subs.py scripts/sendRota.py scripts/showRota.py
+catkin_install_python(PROGRAMS scripts/talker.py scripts/main.py scripts/subs.py scripts/sendRota.py scripts/showRota.py scripts/fk_server.py scripts/fk_client.py scripts/ik_server.py scripts/ik_client.py scripts/gripCommandPublisher.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

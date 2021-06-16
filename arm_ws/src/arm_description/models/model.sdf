@@ -5,7 +5,9 @@
         <self_collide>1</self_collide>
         <link name='chassis'>
             <pose>0 0 .05 0 0 0</pose>
-
+            <inertial>
+                <mass>50</mass>
+            </inertial>
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -26,7 +28,9 @@
         </link>
         <link name='arm1'>
             <pose>0 0 .125 0 0 0</pose>
-
+            <inertial>
+                <mass>.05</mass>
+            </inertial>
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -46,8 +50,11 @@
             </visual>
         </link>
         <link name='arm2'>
+            <!-- <gravity>0</gravity> -->
             <pose>0 0 1.15 0 0 0</pose>
-
+            <inertial>
+                <mass>0.5</mass>
+            </inertial>
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -66,31 +73,36 @@
                 </geometry>
             </visual>
         </link>
-          <link name='arm3'>
+        <link name="arm3">
+            <!-- <gravity>0</gravity> -->
             <pose>0 0 2.65 0 0 0</pose>
-
-            <collision name='collision'>
+            <inertial>
+                <mass>0.25</mass>
+            </inertial>
+            <collision name="collision">
                 <geometry>
                     <cylinder>
                         <radius>.05</radius>
-                        <length>1.0</length>
+                        <length>1</length>
                     </cylinder>
                 </geometry>
             </collision>
-
-            <visual name='visual'>
+            <visual name="visual">
                 <geometry>
                     <cylinder>
                         <radius>.05</radius>
-                        <length>1.0</length>
+                        <length>1</length>
                     </cylinder>
                 </geometry>
             </visual>
         </link>
-        <link name='arm4'>
-            <pose>0 0 3.40 0 0 0</pose>
-
-            <collision name='collision'>
+        <link name="arm4">
+            <!-- <gravity>0</gravity> -->
+            <pose>0 0 3.4 0 0 0</pose>
+            <inertial>
+                <mass>.125</mass>
+            </inertial>
+            <collision name="collision">
                 <geometry>
                     <cylinder>
                         <radius>.05</radius>
@@ -98,8 +110,7 @@
                     </cylinder>
                 </geometry>
             </collision>
-
-            <visual name='visual'>
+            <visual name="visual">
                 <geometry>
                     <cylinder>
                         <radius>.05</radius>
@@ -108,40 +119,260 @@
                 </geometry>
             </visual>
         </link>
-        
+        <link name="arm5">
+            <!-- <gravity>0</gravity> -->
+            <pose>0 0 3.66 0 0 0</pose>
+            <inertial>
+                <mass>.005</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <cylinder>
+                        <radius>.05</radius>
+                        <length>.02</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <cylinder>
+                        <radius>.05</radius>
+                        <length>.02</length>
+                    </cylinder>
+                </geometry>
+            </visual>
+        </link>
+        <link name="arm6">
+            <!-- <gravity>0</gravity> -->
+            <pose>0 0 3.68 0 0 0</pose>
+            <inertial>
+                <mass>.005</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>.1 .3 .02</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>.1 .3 .02</size>
+                    </box>
+                </geometry>
+            </visual>
+        </link>
+        <link name="arm7">
+            <!-- <gravity>0</gravity> -->
+            <pose>0 0.14 3.79 0 0 0</pose>
+            <inertial>
+                <mass>.005</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>.1 .02 .2</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>500</mu>
+                            <mu2>500</mu2>
+                            <slip1>0.0</slip1>
+                            <slip2>0.0</slip2>
+                        </ode>
+                    </friction>
+                    <contact>
+                        <ode>
+                            <min_depth>5</min_depth>
+                            <kp>1e8</kp>
+                        </ode>
+                    </contact>
+                </surface>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>.1 .02 .2</size>
+                    </box>
+                </geometry>
+            </visual>
+        </link>
+        <link name="arm8">
+            <!-- <gravity>0</gravity> -->
+            <pose>0 -0.14 3.79 0 0 0</pose>
+            <inertial>
+                <mass>.005</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>.1 .02 .2</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>500</mu>
+                            <mu2>500</mu2>
+                            <slip1>0.0</slip1>
+                            <slip2>0.0</slip2>
+                        </ode>
+                    </friction>
+                     <contact>
+                        <ode>
+                            <min_depth>5</min_depth>
+                            <kp>1e8</kp>
+                        </ode>
+                    </contact>
+                </surface>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>.1 .02 .2</size>
+                    </box>
+                </geometry>
+            </visual>
+        </link>
         <joint type="revolute" name="chasis_arm1_joint">
             <pose>0 0 -0.025 0 0 0</pose>
             <child>arm1</child>
             <parent>chassis</parent>
             <axis>
                 <xyz>0 0 1</xyz>
+                <dynamics>
+                    <damping>2.0</damping>
+                    <friction>0.7</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
-         <joint type="revolute" name="arm1_arm2_joint">
+        <joint type="revolute" name="arm1_arm2_joint">
             <pose>0 0 -1 0 0 0</pose>
             <child>arm2</child>
             <parent>arm1</parent>
             <axis>
                 <xyz>1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.3</friction>
+                </dynamics>
+                <limit>
+                    <lower>-1.0</lower>
+                    <upper>1.0</upper>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
-        <joint type="revolute" name="arm2_arm3_joint">
-            <pose>0 0 -0.5 0 0 0</pose>
-            <child>arm3</child>
-            <parent>arm2</parent>
+        <joint name="arm2_arm3_joint" type="revolute">
+            <parent> arm2 </parent>
+            <child> arm3 </child>
+            <pose> 0 0 -0.5 0 0 0</pose>
             <axis>
-                <xyz>1 0 0 </xyz>
+                <xyz> 1 0 0  </xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.3</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
-        <joint type="revolute" name="arm3_arm4_joint">
-            <pose>0 0 -0.25 0 0 0</pose>
-            <child>arm4</child>
-            <parent>arm3</parent>
+        <joint name="arm3_arm4_joint" type="revolute">
+            <parent> arm3 </parent>
+            <child> arm4 </child>
+            <pose> 0 0 -0.25 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz> 1 0 0  </xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.3</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
+            </axis>
+        </joint>
+        <joint name="arm4_arm5_joint" type="revolute">
+            <parent> arm4 </parent>
+            <child> arm5 </child>
+            <pose> 0 0 -0.01 0 0 0</pose>
+            <axis>
+                <xyz> 0 0 1  </xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.3</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
+            </axis>
+        </joint>
+        <joint name="arm5_arm6_joint" type="revolute">
+            <parent> arm5 </parent>
+            <child> arm6 </child>
+            <pose> 0 0 -0.01 0 0 0</pose>
+            <axis>
+                <xyz> 1 0 0  </xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.3</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
+            </axis>
+        </joint>
+        <joint name="arm6_arm7_joint" type="revolute">
+            <parent> arm6 </parent>
+            <child> arm7 </child>
+            <pose> 0 0 -0.1 0 0 0</pose>
+            <axis>
+                <xyz> 1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.3</friction>
+                </dynamics>
+                <limit>
+                    <lower>-0.7</lower>
+                    <upper>0.7</upper>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
+            </axis>
+        </joint>
+        <joint name="arm6_arm8_joint" type="revolute">
+            <parent> arm6 </parent>
+            <child> arm8 </child>
+            <pose> 0 0 -0.1 0 0 0</pose>
+            <axis>
+                <xyz> 1 0 0 </xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.3</friction>
+                </dynamics>
+                <limit>
+                    <lower>-0.7</lower>
+                    <upper>0.7</upper>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
         <plugin name="arm_control" filename="libarm_gazebo.so" />
+        <plugin name="grip_control" filename="libgripper_controller.so" />
 
     </model>
 </sdf>

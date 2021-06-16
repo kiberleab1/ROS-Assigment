@@ -1,0 +1,6 @@
+float64[] joint_axis
+float64[] joint_values
+---
+float64 endX
+float64 endY
+float64 endZ
