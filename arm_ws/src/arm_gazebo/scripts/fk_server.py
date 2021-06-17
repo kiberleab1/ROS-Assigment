@@ -20,5 +20,6 @@ def add_two_ints_server():
     print("Ready to add two ints.")
     rospy.spin()
 
+
 if __name__ == "__main__":
     add_two_ints_server()

@@ -18,6 +18,7 @@ def add_two_ints_client(x, y):
         target_values=[2,3,3]
         resp1 = add_two_ints(joint_axis,joint_values,target_values)
         return resp1.new_joint_values
+
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
 
